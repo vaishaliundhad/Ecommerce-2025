@@ -1,5 +1,5 @@
 import {Request ,  Response , Router} from 'express'
-import * as EcomSubCategoryController from '../Controllers/EcomSubCategoryController'
+import * as SubCategoryController from '../Controllers/SubCategoryController'
 
 
 
@@ -13,7 +13,7 @@ const EcomSubCategoryRouter:Router= Router();
 */
 EcomSubCategoryRouter.post("/" , async(request:Request , response:Response)=>{
     console.log("post");
-    await EcomSubCategoryController.SubCreateEcom(request , response);
+    await SubCategoryController.SubCreateEcom(request , response);
     
 })
 
@@ -25,7 +25,7 @@ EcomSubCategoryRouter.post("/" , async(request:Request , response:Response)=>{
 */
 
 EcomSubCategoryRouter.get("/" , async(request:Request , response:Response)=>{
-  await EcomSubCategoryController.ReadAllEcomSubCategory(request, response)
+  await SubCategoryController.getallSubCategory(request, response)
 })
 
 /*
@@ -37,7 +37,7 @@ EcomSubCategoryRouter.get("/" , async(request:Request , response:Response)=>{
 */
 
 EcomSubCategoryRouter.get("/:SubCategoryId" , async(request:Request , response:Response)=>{
-  await EcomSubCategoryController.ReadEcomSubCategory(request, response)
+  await SubCategoryController.getSubCategory(request, response)
 })
 
 
@@ -46,11 +46,11 @@ EcomSubCategoryRouter.get("/:SubCategoryId" , async(request:Request , response:R
 @method:PUT
 @params:SubCategoryId
 @url:http://127.0.0.1:9988/subcategory/SubCategoryId
-@url:http://127.0.0.1:9988/subcategory/http://127.0.0.1:9988/subcategory/67b6a1b533acf3fa435acabc
+@url:http://127.0.0.1:9988/subcategory/67b6a1b533acf3fa435acabc
 */
 
 EcomSubCategoryRouter.put("/:SubCategoryId",async(request:Request , response:Response)=>{
- await EcomSubCategoryController.putEcomSubCategory(request , response)
+ await SubCategoryController.putEcomSubCategory(request , response)
 } )
 
 
@@ -58,12 +58,12 @@ EcomSubCategoryRouter.put("/:SubCategoryId",async(request:Request , response:Res
 @usage:delete a EcomSubCategory
 @method:delete
 @params:SubCategoryId
-@url:http://127.0.0.1:9988/subcategory/SubCategoryId
-@url:http://127.0.0.1:9988/subcategory/http://127.0.0.1:9988/subcategory/67b6a1b533acf3fa435acabc
+@url:http://127.0.0.1:9988/subcategory/deletesubcategory/:SubCategoryId
+@url:http://127.0.0.1:9988/subcategory/deletesubcategory/67b6a1b533acf3fa435acabc
 */
 
-EcomSubCategoryRouter.delete("/:SubCategoryId",async(request:Request , response:Response)=>{
-  await EcomSubCategoryController.DeleteEcomSubCategory(request , response)
+EcomSubCategoryRouter.put("/deletesubcategory/:SubCategoryId",async(request:Request , response:Response)=>{
+  await SubCategoryController.DeleteEcomSubCategory(request , response)
  } )
  
 

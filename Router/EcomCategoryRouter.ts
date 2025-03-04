@@ -1,9 +1,9 @@
 import {Request , Response , Router} from 'express'
-import  * as EcomCategoryController from '../Controllers/EcomCategoryController'
+import  * as CategoryController from '../Controllers/CategoryController'
 
 
 
-const EcomCategoryRouter:Router=Router();
+const CategoryRouter:Router=Router();
 
 
 /*
@@ -18,9 +18,9 @@ const EcomCategoryRouter:Router=Router();
 // "category_logo":Image,
 // "isActive":true
 
-EcomCategoryRouter.post("/",async(request:Request , response:Response)=>{
+CategoryRouter.post("/",async(request:Request , response:Response)=>{
      console.log("post");
-     await EcomCategoryController.CreateEcom(request , response)
+     await CategoryController.CreateEcom(request , response)
 })
 
 /*
@@ -29,9 +29,9 @@ EcomCategoryRouter.post("/",async(request:Request , response:Response)=>{
    @params:name
    @url: http://localhost:9988/category
 */
-EcomCategoryRouter.get("/" , async(request:Request , response:Response)=>{
+CategoryRouter.get("/" , async(request:Request , response:Response)=>{
     console.log("getAll");
-    await EcomCategoryController.ReadAllEcom(request, response)
+    await CategoryController.getallcategory(request, response)
     
 })
 
@@ -42,9 +42,9 @@ EcomCategoryRouter.get("/" , async(request:Request , response:Response)=>{
    @url: http://localhost:9988/category/67b60929aff0c5b8b36bb038
 */
 
-EcomCategoryRouter.get("/:CategoryId" , (request:Request, response:Response)=>{
+CategoryRouter.get("/:CategoryId" , (request:Request, response:Response)=>{
   console.log("get");
-  EcomCategoryController.ReadEcom(request, response)
+  CategoryController.getcategory(request, response)
 })
 
 /*
@@ -54,22 +54,22 @@ EcomCategoryRouter.get("/:CategoryId" , (request:Request, response:Response)=>{
    @url: http://localhost:9988/category/67b60929aff0c5b8b36bb038
 */
 
-EcomCategoryRouter.put("/:CategoryId" , async(request:Request, response:Response)=>{
+CategoryRouter.put("/:CategoryId" , async(request:Request, response:Response)=>{
 console.log("put");
-await EcomCategoryController.PutEcomCategory(request, response)
+await CategoryController.PutEcomCategory(request, response)
 
 })
 /*
    @usage:delete a Category
    @method: DELETE
    @params:name
-   @url: http://localhost:9988/category/67b60929aff0c5b8b36bb038
+   @url: http://localhost:9988/category/deletecategoty/67b60929aff0c5b8b36bb038
 */
 
-EcomCategoryRouter.delete("/:CategoryId" ,async(request:Request, response:Response) =>{
+CategoryRouter.put("/deletecategoty/:CategoryId" ,async(request:Request, response:Response) =>{
     console.log("Delete");
-   await EcomCategoryController.deleteCategory(request, response)
+   await CategoryController.deleteCategory(request, response)
     
 })
 
-export default EcomCategoryRouter
+export default CategoryRouter

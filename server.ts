@@ -11,16 +11,16 @@ const dbName:string|undefined=process.env.MONGODB_DATABASE;
 const app:Application=express()
 app.use(express.json())
 
-mongoose.connect(dbUrl , {dbName:dbName})
-.then(()=>{console.log("Database connection is ready...")})
-.catch((err)=>{console.log(err);
-})
+// mongoose.connect(dbUrl , {dbName:dbName})
+// .then(()=>{console.log("Database connection is ready...")})
+// .catch((err)=>{console.log(err);
+// })
 
  if(port){
     app.listen(Number(port) , ()=>{
           if(dbUrl && dbName) {
             mongoose.connect(dbUrl , {dbName:dbName})
-            .then(()=>{
+            .then((dbresponse)=>{
                 console.log("server succesfull");
                 
             })
@@ -29,16 +29,32 @@ mongoose.connect(dbUrl , {dbName:dbName})
               
             })
           }
+          // console.log(`express server is started https://${hostName}:${port}`);
+          
     })
 
     
 }
 
+// Category Router Configuration
+
 import EcomCategoryRouter from './Router/EcomCategoryRouter'
 app.use("/category", EcomCategoryRouter)
 
+// SubCategory Router Configuration
 import EcomSubCategoryRouter from './Router/EcomSubCategoryRouter'
 app.use("/subcategory", EcomSubCategoryRouter);
+
+//Product Router Configuration
+
+import ProductRouter from './Router/ProductRouter'
+app.use("/product", ProductRouter)
+
+
+// router Configuration
+//user
+import userRouter from './Router/userRouter';
+app.use("/users" ,userRouter )
 
 app.listen(Number(port) , hostName , ()=>{
   console.log(`Express server is started http://${hostName}:${port}`);
